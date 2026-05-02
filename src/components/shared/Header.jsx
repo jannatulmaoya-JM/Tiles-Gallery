@@ -51,7 +51,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-
+import { FaUserCircle } from 'react-icons/fa';
 const Header = () => {
   return (
     <div className="bg-base-300 shadow-sm w-full"> 
@@ -98,7 +98,6 @@ const Header = () => {
             </div>
           </div>
 
-          {/* ২. মাঝখানের মেনু আইটেম (ল্যাপটপ ও বড় স্ক্রিনে দেখাবে) */}
           <div className="hidden lg:flex flex-grow justify-center">
             <ul className="menu menu-horizontal px-1 gap-6 text-base font-medium">
               <li>
@@ -112,7 +111,6 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                {/* বড় স্ক্রিনে মাই প্রোফাইল লিংক */}
                 <Link href="/my-profile" className="hover:text-success transition-colors">
                   My Profile
                 </Link>
@@ -120,10 +118,33 @@ const Header = () => {
             </ul>
           </div>
     
-          {/* ৩. ডান পাশের বাটন */}
-          <div className="flex-shrink-0">
+         
+          {/* <div className="flex-shrink-0">
             <Link href="/login" className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-red-600 transition-all">
              Login
+            </Link>
+          </div>
+           <div className="flex-shrink-0">
+            <Link href="/login" className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-red-600 transition-all">
+           
+            </Link>
+          </div> */}
+
+          <div className="flex items-center gap-3">
+            <Link 
+              href="/login" 
+              className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-red-600 transition-all"
+            >
+              Login
+            </Link>
+
+            {/* রেজিস্ট্রেশন পেজে যাওয়ার জন্য মানুষের মাথার মতো আইকন */}
+            <Link 
+              href="/register" 
+              title="Create an account" 
+              className="text-gray-600 dark:text-gray-300 hover:text-teal-500 transition-colors select-none"
+            >
+              <FaUserCircle size={32} className="sm:w-9 sm:h-9" />
             </Link>
           </div>
 
