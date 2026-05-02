@@ -47,7 +47,7 @@ const Footer = () => {
               <a href="/privacy" className="link link-hover">Privacy Policy</a>
               <a href="/terms" className="link link-hover">Terms of Service</a>
             </div>
-
+            
             <div className="flex gap-4">
               <a 
                 href="https://www.facebook.com/" 
@@ -76,7 +76,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
       </div>
     </footer>
   );
