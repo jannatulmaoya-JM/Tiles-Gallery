@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Banner from '@/components/shared/Banner';
-import Marquee from 'react-fast-marquee';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BrakingNews from '@/components/shared/BrakingNews';
-// API থেকে সব ডাটা ফেচ করার ফাংশন
+import Loader from '@/components/shared/Loader'; 
+
 async function getFeaturedTiles() {
   try {
     const res = await fetch('http://localhost:3000/api/tiles', { cache: 'no-store' });
@@ -22,11 +22,19 @@ async function getFeaturedTiles() {
 export default function HomePage() {
   const [featuredTiles, setFeaturedTiles] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getFeaturedTiles();
-      setFeaturedTiles(data);
+      try {
+        setIsLoading(true); 
+        const data = await getFeaturedTiles();
+        setFeaturedTiles(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchData();
   }, []);
@@ -49,6 +57,11 @@ export default function HomePage() {
       theme: "colored",
     });
   };
+
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="container mx-auto px-4 pb-12">
@@ -111,7 +124,6 @@ export default function HomePage() {
                             ${tile.price.toFixed(2)}
                           </span>
 
-                          {/* এখানে tiles করা হয়েছে, যা সরাসরি আপনার ফোল্ডারের সাথে মিলে যাবে */}
                           <Link 
                             href={`/tiles/${tile.id}`} 
                             onClick={() => handleToast(tile.title)}
