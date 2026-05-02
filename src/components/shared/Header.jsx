@@ -138,7 +138,6 @@ const Header = () => {
               Login
             </Link>
 
-            {/* রেজিস্ট্রেশন পেজে যাওয়ার জন্য মানুষের মাথার মতো আইকন */}
             <Link 
               href="/register" 
               title="Create an account" 
