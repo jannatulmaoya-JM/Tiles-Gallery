@@ -117,23 +117,12 @@ const Header = () => {
               </li>
             </ul>
           </div>
-    
-         
-          {/* <div className="flex-shrink-0">
-            <Link href="/login" className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-red-600 transition-all">
-             Login
-            </Link>
-          </div>
-           <div className="flex-shrink-0">
-            <Link href="/login" className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-red-600 transition-all">
-           
-            </Link>
-          </div> */}
+
 
           <div className="flex items-center gap-3">
             <Link 
               href="/login" 
-              className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-red-600 transition-all"
+              className="btn btn-sm sm:btn-md text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-blue-600 transition-all"
             >
               Login
             </Link>
