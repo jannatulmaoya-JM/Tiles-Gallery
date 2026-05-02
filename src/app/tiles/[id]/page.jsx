@@ -3,12 +3,15 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 
+// ডাটা ফেচ করার ফাংশন
 async function getTileDetails(id) {
   try {
     const filePath = path.join(process.cwd(), 'db.json');
     const fileData = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(fileData);
-    return data.tiles ? data.tiles.find((t) => t.id === id) : null;
+    
+    // String-এ কনভার্ট করে তুলনা করা হয়েছে যাতে টাইপ অমিল না হয়
+    return data.tiles ? data.tiles.find((t) => String(t.id) === String(id)) : null;
   } catch (error) {
     console.error("Error loading tile details:", error);
     return null;
@@ -16,8 +19,8 @@ async function getTileDetails(id) {
 }
 
 export default async function TileDetailsPage({ params }) {
-
-  const { id } = params;
+  // Next.js-এর নতুন নিয়ম অনুযায়ী params-কে await করতে হবে
+  const { id } = await params; 
   const tile = await getTileDetails(id);
 
   if (!tile) {
@@ -38,17 +41,15 @@ export default async function TileDetailsPage({ params }) {
 
   return (
     <div className="container mx-auto px-4 py-12">
- 
       <div className="mb-8">
         <Link href="/all-tiles" className="btn btn-outline btn-sm md:btn-md border-teal-500 hover:bg-teal-500 hover:border-teal-500 text-teal-600 hover:text-white transition-all select-none">
           ← Back to All Tiles
         </Link>
       </div>
 
-  
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-base-100 p-6 md:p-10 rounded-2xl shadow-xl border border-base-200">
         
-    
+        {/* বাম পাশে টাইলের ছবি */}
         <div className="relative h-[350px] md:h-[500px] w-full overflow-hidden rounded-2xl border border-base-200 shadow-sm group">
           <img 
             src={tile.image} 
@@ -57,6 +58,7 @@ export default async function TileDetailsPage({ params }) {
           />
         </div>
 
+        {/* ডান পাশে টাইলের বিস্তারিত তথ্য */}
         <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex flex-wrap justify-between items-center gap-4">
@@ -106,7 +108,7 @@ export default async function TileDetailsPage({ params }) {
             <div className="text-center sm:text-left">
               <p className="text-sm text-gray-400 uppercase font-semibold tracking-wider">Unit Price</p>
               <span className="font-black text-3xl md:text-4xl text-teal-600">
-                ${tile.price.toFixed(2)}
+                ${tile.price ? tile.price.toFixed(2) : "0.00"}
               </span>
             </div>
             

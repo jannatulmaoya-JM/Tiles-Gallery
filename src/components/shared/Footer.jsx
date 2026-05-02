@@ -36,7 +36,6 @@ const Footer = () => {
               <p>Location: Dhaka, Bangladesh</p>
             </div>
           </div>
-          
         </div>
 
         <div className="border-t border-gray-400/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
@@ -47,7 +46,7 @@ const Footer = () => {
               <a href="/privacy" className="link link-hover">Privacy Policy</a>
               <a href="/terms" className="link link-hover">Terms of Service</a>
             </div>
-            
+
             <div className="flex gap-4">
               <a 
                 href="https://www.facebook.com/" 
@@ -69,8 +68,7 @@ const Footer = () => {
                 href="https://www.instagram.com/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-success transition-colors text-gray-600 dark:text-gray-400"
-              >
+                className="hover:text-success transition-colors text-gray-600 dark:text-gray-400">
                 <FaInstagram size={18} />
               </a>
             </div>

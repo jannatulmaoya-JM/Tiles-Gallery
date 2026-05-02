@@ -5,14 +5,15 @@ import Link from 'next/link';
 import Banner from '@/components/shared/Banner';
 import Marquee from 'react-fast-marquee';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import BrakingNews from '@/components/shared/BrakingNews';
+// API থেকে সব ডাটা ফেচ করার ফাংশন
 async function getFeaturedTiles() {
   try {
     const res = await fetch('http://localhost:3000/api/tiles', { cache: 'no-store' });
     if (!res.ok) return [];
-    const data = await res.json();
-    return data;
+    return await res.json();
   } catch (error) {
     return [];
   }
@@ -41,10 +42,19 @@ export default function HomePage() {
     });
   };
 
+  const handleToast = (title) => {
+    toast.info(`Redirecting to details of ${title}...`, {
+      position: "top-right",
+      autoClose: 1500,
+      theme: "colored",
+    });
+  };
+
   return (
     <div className="container mx-auto px-4 pb-12">
+      <ToastContainer />
       <Banner />
-      <Marquee />
+      <BrakingNews />
 
       <section className="my-12">
         <div className="flex justify-between items-center mb-8">
@@ -61,7 +71,7 @@ export default function HomePage() {
 
         {featuredTiles.length > 0 ? (
           <div className="flex items-center gap-2">
-
+            
             <FiChevronLeft
               onClick={handlePrev}
               className={`w-12 h-12 cursor-pointer select-none transition-all duration-300 text-teal-600 hover:text-teal-400 active:scale-95 flex-shrink-0 ${
@@ -75,10 +85,7 @@ export default function HomePage() {
                 style={{ transform: `translateX(-${currentIndex * (100 / 4)}%)` }}
               >
                 {featuredTiles.map((tile) => (
-                  <div 
-                    key={tile.id} 
-                    className="w-full sm:w-1/2 lg:w-1/4 flex-shrink-0 p-3"
-                  >
+                  <div key={tile.id} className="w-full sm:w-1/2 lg:w-1/4 flex-shrink-0 p-3">
                     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all border border-base-200 flex flex-col justify-between h-full select-none">
                       <figure className="px-4 pt-4">
                         <img 
@@ -103,8 +110,11 @@ export default function HomePage() {
                           <span className="font-extrabold text-lg text-teal-600">
                             ${tile.price.toFixed(2)}
                           </span>
+
+                          {/* এখানে tiles করা হয়েছে, যা সরাসরি আপনার ফোল্ডারের সাথে মিলে যাবে */}
                           <Link 
-                            href={`/tile/${tile.id}`} 
+                            href={`/tiles/${tile.id}`} 
+                            onClick={() => handleToast(tile.title)}
                             className="btn btn-primary btn-sm text-white bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:opacity-90"
                           >
                             Details
