@@ -38,8 +38,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
       <ToastContainer />
-      
-      {/* CardBody বাদ দিয়ে সরাসরি Card এর ভেতরে div ব্যবহার করা হয়েছে */}
+
       <Card className="w-full max-w-md shadow-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950 p-2 rounded-2xl">
         <div className="p-6 md:p-8">
           <div className="mb-6 text-center">

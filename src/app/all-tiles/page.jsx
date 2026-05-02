@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '@/components/shared/Loader';
-import { FiSearch } from 'react-icons/fi'; // সার্চ আইকন
+import { FiSearch } from 'react-icons/fi'; 
 
 async function getAllTiles() {
   try {
@@ -45,7 +45,6 @@ export default function AllTilesPage() {
     });
   };
 
-  // টাইটেল অনুযায়ী ফিল্টার করার লজিক
   const filteredTiles = tiles.filter((tile) =>
     tile.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -58,11 +57,8 @@ export default function AllTilesPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12 select-none">
       <ToastContainer />
       
-      {/* হেডার সেকশন: মোবাইল থেকে বড় ডেস্কটপ পর্যন্ত পারফেক্টলি রেস্পন্সিভ */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-        <div className="hidden md:block md:w-32"></div> {/* বড় স্ক্রিনে ব্যালেন্স করার জন্য খালি স্পেস */}
-        
-        {/* সেন্টারে All Tiles হেডার */}
+        <div className="hidden md:block md:w-32"></div> 
         <div className="text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">
             All Tiles
@@ -70,16 +66,14 @@ export default function AllTilesPage() {
           <p className="text-xs sm:text-sm text-gray-500 mt-1">Browse our complete tile collection</p>
         </div>
 
-        {/* Back to Home বাটন */}
         <Link 
           href="/" 
-          className="btn btn-outline btn-sm md:btn-md border-teal-500 hover:bg-teal-500 hover:border-teal-500 w-full sm:w-auto md:w-auto"
+          className="btn btn-outline btn-sm md:btn-sm border-teal-500 hover:bg-teal-500 hover:border-teal-500 sm:w-auto md:w-auto"
         >
           Back to Home
         </Link>
       </div>
 
-      {/* সেন্টারে Search Bar */}
       <div className="flex justify-center mb-8 md:mb-12">
         <div className="relative w-full max-w-md">
           <input
@@ -98,7 +92,7 @@ export default function AllTilesPage() {
           <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base">No tiles found.</p>
         </div>
       ) : (
-        /* রেস্পন্সিভ গ্রিড: মোবাইলে ১টি, ট্যাবলেটে ২টি, ল্যাপটপে ৩টি এবং বড় স্ক্রিনে ৪টি কার্ড */
+       
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {filteredTiles.map((tile) => (
             <div 
