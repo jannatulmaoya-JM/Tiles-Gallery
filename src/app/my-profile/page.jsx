@@ -30,11 +30,10 @@ export default function ProfilePage() {
       <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
         <Card className="max-w-md w-full p-8 text-center border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 rounded-2xl shadow-xl">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Access Denied</h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-6">You must be logged in to view this page.</p>
+          <p className="text-gray-500 dark:text-gray-400 mb-6">You must be logged in to view your profile.</p>
           <Button 
-            as={Link} 
-            href="/login"
-            className="w-full bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold h-11 rounded-xl"
+            onClick={() => window.location.assign("/login")} 
+            className="w-full bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold h-11 rounded-xl border-0 cursor-pointer flex items-center justify-center"
           >
             Go to Login
           </Button>

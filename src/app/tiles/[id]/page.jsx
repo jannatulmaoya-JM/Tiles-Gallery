@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth"; // তোমার better-auth সার্ভার অবজেক্ট (যেখান থেকে getSession পাওয়া যায়)
 
 // ডাটা ফেচ করার ফাংশন
 async function getTileDetails(id) {
@@ -10,7 +12,6 @@ async function getTileDetails(id) {
     const fileData = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(fileData);
     
-    // String-এ কনভার্ট করে তুলনা করা হয়েছে যাতে টাইপ অমিল না হয়
     return data.tiles ? data.tiles.find((t) => String(t.id) === String(id)) : null;
   } catch (error) {
     console.error("Error loading tile details:", error);
@@ -19,7 +20,30 @@ async function getTileDetails(id) {
 }
 
 export default async function TileDetailsPage({ params }) {
-  // Next.js-এর নতুন নিয়ম অনুযায়ী params-কে await করতে হবে
+  // ১. সেশন চেক করা (BetterAuth Server-Side API)
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  // ২. ইউজার লগইন না থাকলে এই মেসেজটি দেখাবে
+  if (!session) {
+    return (
+      <div className="flex min-h-[70vh] flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+        <div className="max-w-md w-full p-8 text-center border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 rounded-2xl shadow-xl">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Access Denied</h2>
+          <p className="text-gray-500 dark:text-gray-400 mb-6">You must be logged in to view the full details of this tile.</p>
+          <Link 
+            href="/login" 
+            className="btn w-full bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold h-11 rounded-xl border-none flex items-center justify-center hover:opacity-90 select-none cursor-pointer"
+          >
+            Go to Login
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // ৩. এবার params এবং টাইলের ডাটা রিসিভ করা
   const { id } = await params; 
   const tile = await getTileDetails(id);
 
@@ -108,7 +132,7 @@ export default async function TileDetailsPage({ params }) {
             <div className="text-center sm:text-left">
               <p className="text-sm text-gray-400 uppercase font-semibold tracking-wider">Unit Price</p>
               <span className="font-black text-3xl md:text-4xl text-teal-600">
-                ${tile.price ? tile.price.toFixed(2) : "0.00"}
+                ${tile.price ? Number(tile.price).toFixed(2) : "0.00"}
               </span>
             </div>
             
