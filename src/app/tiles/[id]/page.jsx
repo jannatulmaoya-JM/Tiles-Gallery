@@ -33,7 +33,7 @@ export default async function TileDetailsPage({ params }) {
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Access Denied</h2>
           <p className="text-gray-500 dark:text-gray-400 mb-6">You must be logged in to view the full details of this tile.</p>
           <Link 
-            href="/login" 
+            href={`/login?redirectTo=/tiles/${id}`} 
             className="btn w-full bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold h-11 rounded-xl border-none flex items-center justify-center hover:opacity-90 select-none cursor-pointer"
           >
             Go to Login
