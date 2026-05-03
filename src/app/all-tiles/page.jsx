@@ -9,7 +9,7 @@ import { FiSearch } from 'react-icons/fi';
 
 async function getAllTiles() {
   try {
-    const res = await fetch('http://localhost:3000/api/tiles', { cache: 'no-store' });
+    const res = await fetch('https://tiles-gallery-kappa.vercel.app/api/tiles', { cache: 'no-store' });
     if (!res.ok) return [];
     return await res.json();
   } catch (error) {
