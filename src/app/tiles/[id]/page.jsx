@@ -3,7 +3,7 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import { headers } from "next/headers";
-import { auth } from "@/lib/auth"; // তোমার better-auth সার্ভার অবজেক্ট (যেখান থেকে getSession পাওয়া যায়)
+import { auth } from "@/lib/auth"; // তোমার better-auth সার্ভার অবজেক্ট
 
 // ডাটা ফেচ করার ফাংশন
 async function getTileDetails(id) {
@@ -20,12 +20,33 @@ async function getTileDetails(id) {
 }
 
 export default async function TileDetailsPage({ params }) {
-  // ১. সেশন চেক করা (BetterAuth Server-Side API)
+  // ১. প্রথমে params থেকে id এবং টাইলের ডাটা বের করো
+  const { id } = await params; 
+  const tile = await getTileDetails(id);
+
+  // ২. টাইল যদি আসলেই না থাকে, তবে "Not Found" দেখাও
+  if (!tile) {
+    return (
+      <div className="container mx-auto px-4 py-20 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">
+          Tile Not Found
+        </h2>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">
+          The tile collection you are looking for does not exist.
+        </p>
+        <Link href="/all-tiles" className="btn btn-primary mt-6 text-white bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none">
+          Back to All Tiles
+        </Link>
+      </div>
+    );
+  }
+
+  // ৩. টাইল পাওয়া গেছে, এবার চেক করো ইউজার লগইন আছে কি না
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  // ২. ইউজার লগইন না থাকলে এই মেসেজটি দেখাবে
+  // ৪. ইউজার লগইন না থাকলে এই মেসেজটি দেখাবে
   if (!session) {
     return (
       <div className="flex min-h-[70vh] flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
@@ -43,26 +64,7 @@ export default async function TileDetailsPage({ params }) {
     );
   }
 
-  // ৩. এবার params এবং টাইলের ডাটা রিসিভ করা
-  const { id } = await params; 
-  const tile = await getTileDetails(id);
-
-  if (!tile) {
-    return (
-      <div className="container mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">
-          Tile Not Found
-        </h2>
-        <p className="text-gray-500 dark:text-gray-400 mt-2">
-          The tile collection you are looking for does not exist.
-        </p>
-        <Link href="/all-tiles" className="btn btn-primary mt-6 text-white bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none">
-          Back to All Tiles
-        </Link>
-      </div>
-    );
-  }
-
+  // ৫. ইউজার লগইন করা থাকলে টাইলের ডিটেইলস দেখাও
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mb-8">
