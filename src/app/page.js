@@ -11,6 +11,7 @@ import Loader from '@/components/shared/Loader';
 
 async function getFeaturedTiles() {
   try {
+    // https://tiles-gallery-kappa.vercel.app
     const res = await fetch('https://tiles-gallery-kappa.vercel.app/api/tiles', { cache: 'no-store' });
     if (!res.ok) return [];
     return await res.json();
