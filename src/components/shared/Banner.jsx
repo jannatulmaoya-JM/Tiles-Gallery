@@ -1,4 +1,6 @@
+
 import React from 'react';
+import Link from 'next/link';
 import bannerImg from '../../asses/banner.png'; 
 
 const Banner = () => {
@@ -27,9 +29,12 @@ const Banner = () => {
               Explore our premium collection of ceramic, geometric, and minimalist tiles. 
               Crafted beautifully to elevate your living spaces.
             </p>
-            <button className="btn btn-sm sm:btn-md h-auto min-h-[2.5rem] sm:min-h-[3rem] px-6 sm:px-8 text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-teal-500/30 rounded-xl">
-              Browse Now
-            </button>
+
+            <Link href="/all-tiles">
+              <button className="btn btn-sm sm:btn-md h-auto min-h-[2.5rem] sm:min-h-[3rem] px-6 sm:px-8 text-white font-bold bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 border-none hover:from-green-500 hover:via-teal-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-teal-500/30 rounded-xl">
+                Browse Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
