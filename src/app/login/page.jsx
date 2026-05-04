@@ -73,7 +73,7 @@ const LoginPage = () => {
         </div>
 
         <Form className="flex w-full flex-col gap-5" onSubmit={onSubmit}> 
-          {/* Email Input */}
+
           <div className="w-full flex flex-col gap-1">
             <label className="font-semibold text-sm text-gray-700 dark:text-gray-300">Email</label>
             <Input
@@ -89,7 +89,6 @@ const LoginPage = () => {
             />
           </div>
 
-          {/* Password Input */}
           <div className="w-full flex flex-col gap-1">
             <label className="font-semibold text-sm text-gray-700 dark:text-gray-300">Password</label>
             <Input

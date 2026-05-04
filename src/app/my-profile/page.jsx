@@ -83,33 +83,29 @@ export default function ProfilePage() {
               </p>
             </div>
 
-            {/* Buttons Section */}
-            {/* Buttons Section */}
-<div className="flex gap-3 mb-4">
- 
-  <Link href="/my-profile/update">
-    <Button
-      className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-5 h-11 rounded-xl shadow-lg transition-all flex items-center gap-2"
-    >
-      <FaUserEdit /> Edit Profile
-    </Button>
-  </Link>
-  
-  <Button
-    onClick={handleLogout}
-    className="bg-red-500 hover:bg-red-600 text-white font-bold px-5 h-11 rounded-xl shadow-lg transition-all flex items-center gap-2"
-  >
-    <FaSignOutAlt /> Log Out
-  </Button>
-</div>
+            <div className="flex gap-3 mb-4">
+             
+              <Link href="/my-profile/update">
+                <Button
+                  className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-5 h-11 rounded-xl shadow-lg transition-all flex items-center gap-2"
+                >
+                  <FaUserEdit /> Edit Profile
+                </Button>
+              </Link>
+
+              <Button
+                onClick={handleLogout}
+                className="bg-red-500 hover:bg-red-600 text-white font-bold px-5 h-11 rounded-xl shadow-lg transition-all flex items-center gap-2"
+              >
+                <FaSignOutAlt /> Log Out
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div className="max-w-5xl mx-auto px-4 md:px-8 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* Profile Info */}
         <div className="flex flex-col gap-6">
           <Card className="p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 rounded-2xl shadow-sm">
             <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-4 border-b pb-2">
@@ -143,7 +139,6 @@ export default function ProfilePage() {
           </Card>
         </div>
 
-        {/* Recent Purchase History Table */}
         <div className="lg:col-span-2">
           <Card className="p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 rounded-2xl shadow-sm flex flex-col gap-4">
             <div className="flex items-center justify-between">

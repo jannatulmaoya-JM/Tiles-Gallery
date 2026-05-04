@@ -61,7 +61,7 @@ const RegisterPage = () => {
           <div className="alert alert-error mb-4 py-2 text-sm text-white rounded-lg select-none">
             {errorMsg}
           </div>
-        )}
+        )};
 
         <form onSubmit={onSubmit} className="flex flex-col gap-4">
           
@@ -118,7 +118,6 @@ const RegisterPage = () => {
             <span className="text-xs text-gray-400 mt-1">Must be at least 8 characters</span>
           </div>
 
-          {/* Sign Up বাটন */}
           <div className="form-control mt-4">
             <button 
               type="submit" 

@@ -61,7 +61,7 @@ export default function HomePage() {
 
   if (isLoading) {
     return <Loader />;
-  }
+  };
 
   return (
     <div className="container mx-auto px-2 sm:px-4 pb-12">
@@ -156,4 +156,4 @@ export default function HomePage() {
       </section>
     </div>
   );
-}
+};

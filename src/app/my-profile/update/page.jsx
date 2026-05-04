@@ -66,7 +66,7 @@ export default function UpdateProfilePage() {
       });
 
       alert("Profile updated successfully!");
-      // ফ্রেশ পেজ লোড করে প্রোফাইলে ফিরিয়ে নেবে
+
       window.location.assign("/my-profile");
     } catch (error) {
       console.error("Update error:", error);
@@ -101,8 +101,7 @@ export default function UpdateProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
       <Card className="max-w-md w-full p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 rounded-2xl shadow-sm">
-        
-        {/* ব্যাক টু প্রোফাইল বাটন */}
+
         <button 
           type="button"
           onClick={() => window.location.assign("/my-profile")}
@@ -119,7 +118,7 @@ export default function UpdateProfilePage() {
         </p>
 
         <form onSubmit={handleUpdate} className="flex flex-col gap-4">
-          {/* নাম */}
+
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex items-center gap-1">
               <FaUser className="text-gray-400 text-sm" /> Full Name
@@ -133,7 +132,6 @@ export default function UpdateProfilePage() {
             />
           </div>
 
-          {/* ইমেইল */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex items-center gap-1">
               <FaEnvelope className="text-gray-400 text-sm" /> Email Address
@@ -147,7 +145,6 @@ export default function UpdateProfilePage() {
             />
           </div>
 
-          {/* প্রোফাইল ছবি */}
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex items-center gap-1">
               <FaImage /> Profile Picture
@@ -160,7 +157,7 @@ export default function UpdateProfilePage() {
             />
           </div>
 
-          {/* কভার ছবি */}
+
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex items-center gap-1">
               <FaImage /> Cover Photo

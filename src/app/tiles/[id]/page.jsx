@@ -3,9 +3,8 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import { headers } from "next/headers";
-import { auth } from "@/lib/auth"; // তোমার better-auth সার্ভার অবজেক্ট
+import { auth } from "@/lib/auth";
 
-// ডাটা ফেচ করার ফাংশন
 async function getTileDetails(id) {
   try {
     const filePath = path.join(process.cwd(), 'db.json');
@@ -20,11 +19,10 @@ async function getTileDetails(id) {
 }
 
 export default async function TileDetailsPage({ params }) {
-  // ১. প্রথমে params থেকে id এবং টাইলের ডাটা বের করো
+
   const { id } = await params; 
   const tile = await getTileDetails(id);
 
-  // ২. টাইল যদি আসলেই না থাকে, তবে "Not Found" দেখাও
   if (!tile) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
@@ -39,14 +37,12 @@ export default async function TileDetailsPage({ params }) {
         </Link>
       </div>
     );
-  }
+  };
 
-  // ৩. টাইল পাওয়া গেছে, এবার চেক করো ইউজার লগইন আছে কি না
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  // ৪. ইউজার লগইন না থাকলে এই মেসেজটি দেখাবে
   if (!session) {
     return (
       <div className="flex min-h-[70vh] flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
@@ -62,9 +58,8 @@ export default async function TileDetailsPage({ params }) {
         </div>
       </div>
     );
-  }
+  };
 
-  // ৫. ইউজার লগইন করা থাকলে টাইলের ডিটেইলস দেখাও
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mb-8">
@@ -74,8 +69,7 @@ export default async function TileDetailsPage({ params }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-base-100 p-6 md:p-10 rounded-2xl shadow-xl border border-base-200">
-        
-        {/* বাম পাশে টাইলের ছবি */}
+
         <div className="relative h-[350px] md:h-[500px] w-full overflow-hidden rounded-2xl border border-base-200 shadow-sm group">
           <img 
             src={tile.image} 
@@ -84,7 +78,7 @@ export default async function TileDetailsPage({ params }) {
           />
         </div>
 
-        {/* ডান পাশে টাইলের বিস্তারিত তথ্য */}
+ 
         <div className="flex flex-col justify-between h-full">
           <div>
             <div className="flex flex-wrap justify-between items-center gap-4">
@@ -122,7 +116,7 @@ export default async function TileDetailsPage({ params }) {
                         <span className="badge badge-success text-white font-semibold">In Stock</span>
                       ) : (
                         <span className="badge badge-error text-white font-semibold">Out of Stock</span>
-                      )}
+                      )};
                     </td>
                   </tr>
                 </tbody>
@@ -153,4 +147,4 @@ export default async function TileDetailsPage({ params }) {
       </div>
     </div>
   );
-}
+};

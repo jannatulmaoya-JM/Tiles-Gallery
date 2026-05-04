@@ -13,7 +13,6 @@ const Footer = () => {
               Tiles Gallery
             </span>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 max-w-xs mx-auto sm:mx-0">
-              {/* Add description here if needed */}
             </p>
           </div>
 
